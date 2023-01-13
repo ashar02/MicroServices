@@ -2,23 +2,24 @@ const express = require('express');
 const axios = require('axios');
 const app = express();
 const HOST = 'localhost';
-const PORT = 3001;
+const PORT = 3002;
 
 app.use(express.json());
-app.get('/fakeapi', (req, res, next) => {
-    res.send('Hello from the fake api server\n');
+app.get('/test1', (req, res, next) => {
+    res.send('Hello from test1\n');
 });
-app.post('/bogusapi', (req, res, next) => {
-    res.send('Bogus api says hello!\n');
+app.post('/test2', (req, res, next) => {
+    res.send('Hello from test2\n');
 });
 
 app.listen(PORT, () => {
+    //register on start
     axios({
         method: 'POST',
         url: 'http://localhost:3000/register',
         headers: {'Content-Type': 'application/json'},
         data: {
-            'apiName': 'registrytest',
+            'apiName': 'testapi',
             'protocol': 'http',
             'host': HOST,
             'port': PORT
